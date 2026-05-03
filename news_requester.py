@@ -20,7 +20,7 @@ def get_menu() -> str:
     print('6. Technology')
     print('===============')
     choice = int(input('Please choose a category: '))
-    while choice < 0 or choice > 6:
+    while choice < 1 or choice > 6:
         print('Please choose between 1 and 6')
         choice = int(input('Please choose a category: '))
     match choice:
@@ -30,8 +30,9 @@ def get_menu() -> str:
         case 4: return 'Science'
         case 5: return 'Sports'
         case 6: return 'Technology'
+        case _: raise ValueError('Invalid category choice')
 
-def menu():
+def menu() -> str:
     while True:
         os.system('cls')    # 화면 클리어
         print('1. Business')
