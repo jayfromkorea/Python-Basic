@@ -9,15 +9,14 @@ class Person:
         # 왜냐하면 파이썬에는 public, private, protected가 없기 때문임
 
     # class method
-    def change_country(cls, country):
+    @classmethod
+    def change_country(cls, country:str):
         cls.country = country
 
 
     @property
     def Age(self):  # getter: 외부에 값을 노출하는 기능
-        return self.__age
-    
-    
+        return self.__age   
     
     @Age.setter
     def Age(self, age):
@@ -38,6 +37,8 @@ class Person:
     # 클래스 안의 함수들은 Method라고 부름
     def introduce(self):    # 인스턴스 메서드(Insatnace Method)
         print(f'안녕하세요, 제 이름은 {self.name}이고 나이는 {self.__age}살입니다')
+
+
 
 # 클래스 상속(Inheritance)
 class Student(Person):
@@ -134,7 +135,7 @@ bang = Person('방우식', 67)
 print(hong.country)
 print(bang.country)
 
-Person.change_country(Person, 'Some Country')
+Person.change_country('Some Country')
 print(Person.country)
 hong.change_country('Taiwan')   # cls는 Person으로 자동 대입
 print(hong.country)

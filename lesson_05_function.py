@@ -26,7 +26,6 @@ def show_hello(msg:str|None='User'):
 res = add(1, 2)     # 위치 가반 호출
 print(res)
 print(add(1, 2))
-print(add('one', 'two'))
 
 res = add(num2 = 2, num1 = 1)   # 이름기반 호춯
 print(res)
@@ -36,7 +35,6 @@ print(res)
 # 이러한 함수는 소비형 함수임
 res = show_hello('민수')    # None 값이 들어감
 show_hello()
-show_hello(5)
 
 
 def total_avg(scores:list):
