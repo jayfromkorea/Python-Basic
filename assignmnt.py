@@ -13,12 +13,16 @@ class News:
         self.__category = ''
         self.__url = ''
         self.__publisher = ''
+        self.__author = ''
+        self.__date = ''
 
     # Getters
     @property
     def Title(self):
         return self.__title
-    
+    @property
+    def Author(self):
+        return self.__author
     @property
     def Description(self):
         return self.__description
@@ -31,11 +35,17 @@ class News:
     @property
     def Publisher(self):
         return self.__publisher
+    @property
+    def Date(self):
+        return self.__date
     
     # Setters
     @Title.setter
     def Title(self, title):
         self.__title = title
+    @Author.setter
+    def Author(self, author):
+        self.__author = author
     @Description.setter
     def Description(self, description):
         self.__description = description
@@ -48,6 +58,9 @@ class News:
     @Publisher.setter
     def Publisher(self, publisher):
         self.__publisher = publisher
+    @Date.setter
+    def Date(self, date):
+        self.__date = date
 
     def choose_country(self):
         while True:
@@ -63,6 +76,7 @@ class News:
             if choice >= '1' and choice <= '1':
                 match choice:
                     case '1':
+                        self.Category = 'The United States'
                         return 'us'
                     
     def choose_category(self):
@@ -101,7 +115,7 @@ class News:
         url = f'{self.BASE_URL}?country={country}&category={category}&apiKey={self.API_KEY}'
         return url
 
-    def display_article(self):
+    def choose_article(self):
         if self.__url == 'x':
             print('Exiting...')
             exit(-1)
@@ -127,16 +141,46 @@ class News:
             print(f'Date: {feature["publishedAt"]}')
             print(f'Publisher: {feature["source"]["name"]}')
             print() # Line change
-        
+
+        while True:
+            choice = int(input('Please choose the number of the article you like: '))
+            if choice >= 1 and choice <= len(result['articles']):
+                break
+        choice -= 1 # 0-based indexing
+
+        self.Title = result['articles'][choice]['title']
+        self.Author = result['articles'][choice]['author']
+        self.Description = result['articles'][choice]['description']
+        self.Publisher = result['articles'][choice]['source']['name']
+        self.Url = result['articles'][choice]['url']
+        self.Date = result['articles'][choice]['publishedAt']
+
+    def __repr__(self) -> str:
+        return f'Title: {self.Title}\n Author: {self.Author}\n Date: {self.Date}\n Category: {self.Category}\n Description: {self.Description}\n URL: {self.Url}\n Publisher: {self.Publisher}\n======================='
+        # print(f'Title: {self.Title}')
+        # print(f'Author: {self.Author}')
+        # print(f'Date: {self.Date}')
+        # print(f'Category: {self.Category}')
+        # print(f'Description: {self.Description}')
+        # print(f'URL: {self.Url}')        
+        # print(f'Publisher: {self.Publisher}')
+
+
         
 
 
-# 1. Select country
-# 2. Select category
-# 3. Take a look at the roaster
+# 1. Select country✅
+# 2. Select category✅
+# 3. Take a look at the roaster✅
 # 4. Choose an article
 # 5. Show the info of the article
 
 test = News()
 test.Url = test.make_url()
-test.display_article()
+test.choose_article()
+print(test)
+
+business5 = News()
+business5.Url = business5.make_url()
+business5.choose_article()
+print(business5)
