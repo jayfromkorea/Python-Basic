@@ -1,0 +1,5 @@
+{
+    "API_KEY": "d2fd5e1b8b50454aa36d768721b20201",
+    "BASE_URL" : "https://newsapi.org/v2/top-headlines",
+    "COUNTRY" : "us"
+}
